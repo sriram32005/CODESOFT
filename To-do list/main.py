@@ -4,14 +4,17 @@ class TodoApp:
     def __init__(self,root):
         self.root = root
         root.title("To-Do List")
+        root.configure(bg="dark grey")
 
         self.tasks = []
 
         self.label1 = tk.Label(root,text="Welcome to your to-do list")
         self.label1.pack(side=tk.TOP)
+        self.label1.configure(bg="dark grey")
 
         self.label2 = tk.Label(root,text="Enter new task here: ")
         self.label2.pack(pady=(10,0))
+        self.label2.configure(bg="dark grey")
 
         self.inp_box = tk.Entry(root,width=40)
         self.inp_box.pack(pady=10)
@@ -21,12 +24,14 @@ class TodoApp:
 
         self.label3 = tk.Label(root,text="Your Tasks")
         self.label3.pack(pady=(10,0))
+        self.label3.configure(bg="dark grey")
 
         self.task_box = tk.Listbox(width=60)
         self.task_box.pack(padx=20)
 
         self.label4 = tk.Label(root,text="Please select a task to Remove or Mark as Done.")
         self.label4.pack(pady=(10,0))
+        self.label4.configure(bg="dark grey")
 
         self.rm_btn = tk.Button(root,text="Remove Task",command=self.remove)
         self.rm_btn.pack(side=tk.LEFT,padx=(30,15),pady=20)
@@ -41,13 +46,10 @@ class TodoApp:
             self.tasks.append([cur_tsk,False])
             self.task_box.insert(tk.END,cur_tsk)
             self.inp_box.delete(0,tk.END)
-        else:
-            print("Not working")
 
     def remove(self):
         cur_tsk = self.task_box.curselection()
         if cur_tsk:
-            print(cur_tsk)
             index=cur_tsk[0]
             del self.tasks[index]
             self.task_box.delete(index)
@@ -61,7 +63,7 @@ class TodoApp:
                 self.tasks[index][0] += "  (Done)" 
             self.task_box.delete(index)
             self.task_box.insert(index,self.tasks[index][0])
-            self.task_box.itemconfig(index,{"bg":"light blue"})
+            self.task_box.itemconfig(index,{"bg":"light green"})
 
 if __name__ == "__main__":
     root = tk.Tk()
